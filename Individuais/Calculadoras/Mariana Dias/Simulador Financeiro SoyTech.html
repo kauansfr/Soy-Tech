@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .alinhar{
+        width: fit-content; margin: auto; font-family: monospace;
+    }
+</style>
+<body style="background-color: rgb(255, 255, 238);border: solid 2px rgb(62, 122, 51);width: 80%; height: 400px; margin: auto;">
+    <h1 style="font-weight: bold;width: fit-content; margin: auto; font-family: Georgia, 'Times New Roman', Times, serif;">
+        Simulador financeiro
+    </h1>
+    <div class="alinhar">Bem vindo ao simulador financeiro da SoyTech! Aqui te ajudaremos a visualizar o quanto sua produção de soja está sendo afetada por conta da perda das safras.</div>
+    <br>
+    <span style="font-family: monospace;">Indique o número de sacas que você produz por safra:</span>
+    <input id="sacas">
+    <br>
+    <br>
+    <span style="font-family: monospace;">Agora informe qual o valor de venda de sua unidade de saca:</span>
+    <input id="valor_saca">
+    <br>
+    <button onclick="calcular()">
+        Calcular simulação
+    </button>
+    <div id="mostrar"></div>
+</body>
+</html>
+
+<script>
+    function calcular(){
+        var saca_produzida = sacas.value
+        var saca_valor = valor_saca.value
+        var saca_inicial = saca_produzida / (1 - (20/100))
+        var lucro_sem_perda = saca_inicial * saca_valor
+        var lucro_com_perda = saca_produzida * saca_valor 
+
+        mostrar.innerHTML = `Segundo o que foi informado ao simulador você produz <b>${saca_produzida}</b> 
+        de sacas(considerando que cada saca tem em média 60kg) por safra e cada saca vale <b>R$${saca_valor}</b>.<br>
+
+        Mas tendo em mente os 20% de perda que sabemos que acontesse por conta da instabilidade
+        na umidade do plantio, sabemos que esse não é o valor líquido do que é recebido e esse não é a
+        quantidade total de sacas que poderiam ter sido produzidas.<br>
+        Assim você acaba perdendo em dinheiro <b>R$${lucro_com_perda}</b>.<br>
+        Mas com a nossa solução que acabará com essa perda, assim você teria um lucro de <b>R$${lucro_sem_perda}</b> caso você passe a utilizar nossa solução.`
+    }
+</script>

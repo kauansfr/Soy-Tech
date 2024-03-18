@@ -1,0 +1,53 @@
+ /* Estilos gerais */
+ body {
+    font-family: "Helvetica Neue", sans-serif; /* Fonte redonda */
+    background-color: #f0f0f0; /* Cor de fundo geral */
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos do cabeçalho */
+h1 {
+    color: #4CAF50; /* Cor verde */
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Estilos do formulário */
+form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo transparente com blur */
+    border-radius: 10px; /* Cantos arredondados */
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Borda cinza */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Efeito de transição suave */
+}
+
+button:hover {
+    background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
+}
+
+/* Estilos do resultado */
+#resultado {
+    margin-top: 20px;
+    text-align: center;
+}

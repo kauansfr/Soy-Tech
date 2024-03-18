@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Perda de Soja</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Calculadora de Perda de Soja</h1>
+
+    <p>Insira a quantidade de sacas de soja que você perdeu devido à umidade inadequada:</p>
+    <input type="number" id="sacasPerdidas" min="0" value="10"><br><br>
+
+    <button onclick="calcularEconomia()">Calcular Economia</button><br><br>
+
+    <div id="resultado"></div>
+
+    <script>
+        function calcularEconomia() {
+            // Obtém o valor inserido pelo usuário e converte para um número inteiro
+            var sacasPerdidas = parseInt(document.getElementById('sacasPerdidas').value);
+            var valorSaca = 119.08; // Valor médio de uma saca de soja
+
+            // Suponha que o sistema de monitoramento reduza as perdas em 50%
+            var perdaSemSistema = sacasPerdidas * valorSaca;
+            var perdaComSistema = perdaSemSistema * 0.8; // 80% de redução nas perdas
+
+            var economiaAnual = perdaSemSistema - perdaComSistema;
+            // Obtém a referência ao elemento onde o resultado será exibido
+            var resultado = document.getElementById('resultado');
+            resultado.innerHTML = "<p>Com o sistema de monitoramento de umidade, você poderia economizar aproximadamente R$ " + economiaAnual.toFixed(2) + " por ano.</p>";
+            resultado.innerHTML += "<p>Instalando nosso sistema, você pode reduzir significativamente suas perdas e aumentar sua lucratividade.</p>";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="context">
+            <div class="context_info">
+                <h1 class="title">Quanto posso perder de soja por falta de umidade?</h1>
+                <p class="content">
+                    Segundo o artigo publicado pela agrosmart, a falta de demanda hídrica durante
+                    o 3 período do ciclo da soja pode ocasionar o abortamento de flores, a queda de frutos
+                    (redução do número de vagens) e vagens chochas ou vazias,impactando diretamente na produtividade.
+                    <b>Vale destacar que as perdas neste momento podem chegar a 47% da produção.</b>
+                </p>
+                <div class="img_container">
+                    <img class="soy_water" src="./img/water_block.png" alt="">
+                    
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="calc_container">
+            <div class="logo_container">
+                <img class="logo" src="./img/logo_soytech.JPG" alt="">
+            </div>
+            <h2 class="title">Simule sua perda</h2>
+            <p>Quantos Hectares você possui:</p>
+            <input id="input_qtd_hectares" type="text">
+            <p>Produção por hectare (KG):</p>
+            <input id="input_hectare" type="text"><br>
+            <button class="btn" onclick="simulacaoFinancira()">Calcular Perda</button>
+            <p>* 1 saca de soja de 60Kg na cotação atual é R$ 118,08</p>
+            <div id="result_financeiro" class="result"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function simulacaoFinancira() {
+        var qtd_hectares = Number(input_qtd_hectares.value);
+        var producao_hectare = Number(input_hectare.value);
+        var producao = qtd_hectares * producao_hectare
+        var sacas = producao / 60;
+        var dinheiro = sacas * 118.08
+        var perdaUmidade = dinheiro * 0.20;
+        var reducao = perdaUmidade * 0.20
+
+        result_financeiro.innerHTML = `
+
+        <br>
+
+        Com valor de sua produção estimado em <span class="money_text">${dinheiro.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span><br>  
+        Os impactos por falta de umidade chegam a <span class="money_text">${perdaUmidade.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</span>.
+        
+        <br><br>
+
+        Através da solução SoyTech que visa monitorar e coletar dados sobre a umidade da plantação
+        e apresentalos através de um sistema web. Você, terá maior controle das informações de sua 
+        plantação evitando perdas de até <span class="money_text">${reducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} </span>
+        em sua produção, equivalente a uma redução de 20% de suas perdas.
+
+
+        `
+
+    }
+
+</script>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div id="container">
+        <div class="calc_container">
+            <img class="logo" src="./img/logo-soyTech.png" alt="">
+            <h1 class="titulo">Simulador Financeiro!</h1>
+            <div class="inputs_container">
+                <p class="TXTnomeInput">Nome:</p>
+                <input class="InputNome" id="input_nome"><br>
+                <p class="TXTnomeInput">Nome da Empresa:</p>
+                <input class="input_calc" id="input_empresa"><br>
+                <p class="TXTnomeInput">Quantidade de soja plantada:</p>
+                <input class="input_calc" id="input_soja"> (kg)<br>
+                <p class="TXTnomeInput">Preço médio de cada saca:</p>
+                <input class="input_calc" id="input_preço"> (R$)<br>
+                <button class="btn-calc" onclick="calculoPerda()">
+                    Calcular
+                </button>
+
+                <div  class="frase" id="div_frase">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function calculoPerda() {
+        var nome = input_nome.value
+        var empresa = input_empresa.value
+        var qtdSoja = Number(input_soja.value)
+        var valorSaca = Number(input_preço.value)
+        var sacas = qtdSoja / 60
+        var precoColheita = valorSaca * sacas
+
+        div_frase.innerHTML = `<p>Olá ${nome} tudo bem? Segundo a nossa pesquisa você produzirá aproximadamente <b>${sacas}
+        sacas</b> de soja.<br>
+        <br>Com isso o valor estimado para receber é de <span style="color: #62BD5D; font-weight: bold;">R$${precoColheita}</span> reais.<br> 
+        <br>Mas caso o senhor(a) não tome os devidos cuidados 
+        com o controle de umidade poderá perder até <span style="color: #FC2B2B; font-weight: bold;">47%</span> desse valor.<br> 
+        <br>Com isso a sua empresa ${empresa} poderá perder até <b>${sacas * 0.47} sacas</b>.<br>
+        <br>Com um prejuizo de <span style="color: #FC2B2B; font-weight: bold;">R$${precoColheita * 0.47}</spam> reais.</p>`
+
+    }
+</script>

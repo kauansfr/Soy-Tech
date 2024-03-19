@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+    <link rel="stylesheet" href="soytech.css">
+</head>
+<body>
+    <h2>Soy Tech</h2>
+    <div class="pergunta">
+    Digite em quantos hactares você produz soja:
+    <input id="hectar_input" type="text"><br><br>
+    Digite quantas sacas de soja você espera colher por hectare:
+    <input id="saca_colher_input" type="text"><br><br>
+    Digite em milímetros a quantidade de água necessária para o cultivo de soja (por hactare):
+    <input id="mm_input" type="text"><br><br>
+    Digite o preço de venda por saca em reais:
+    <input id="preco_input" type="text"><br><br>
+    Digite a média do custo total de produção da soja:
+    <input id="custoProducao_input" type="text"><br><br>
+    <button onclick="calculo()"> Meus resultados</button><br><br>
+    <div class="estilo" id="tela"></div>
+    </div>
+</body>
+</html>
+<script>
+    function calculo(){
+        var hectare = Number(hectar_input.value)
+        var sacaColher = Number(saca_colher_input.value)
+        var mm = Number(mm_input.value)
+        var preco = Number(preco_input.value)
+        var custoProducao = Number(custoProducao_input.value)
+        var venda = 0
+        var lucro = 0
+        var umidadeDisponivelAfetada = 0
+        var perda = 0
+        // num esperado da colheita total
+        var colhimento = sacaColher*hectare
+        //var qtdAguaTotal = mm*hectare
+        // 60 = prod. med sacas p/ hectar
+        // lucro da soja
+        venda = preco * colhimento
+        //venda total
+        lucro = venda - custoProducao
+
+        umidadeDisponivelAfetada = mm-(mm*0.2)
+        umidadeDisponivelAfetada = umidadeDisponivelAfetada * hectare
+        perda = umidadeDisponivelAfetada * 0.01
+    //Fator de redu. da prod.: 1% de redu na produção por mm de deficiência de água
+
+        tela.innerHTML = `
+        <h2>Informações da sua plantação de soja</h2><br>
+        Quantidade total: ${colhimento} Sacas de soja<br><br>
+        Estimativa de venda total de soja: R$${venda}<br><br>
+        Estimativa do seu lucro total: R$${lucro}<br><br>
+        Por conta da falta de umidade, você teve uma perda de ${perda}%  da sua produção <br><br>
+        <br>
+
+        `
+
+
+    }
+</script>
+<!-- input
+perca media = 15% a 20%
+qnt Produz = .value 
+informções=
+apresentar a perca de produção por conta da umidade -->

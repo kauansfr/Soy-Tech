@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Financeira Individual</title>
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora Financeira SoyTech - Feita para você, produtor de Soja!</h1>
+
+        <div class="input_box">
+            Digite quantas sacas de soja você produz por safra: 
+            <input id="input_sacas" type="number">
+        </div>
+
+        <div class="input_box">
+            Digite quanto você desejava produzir na sua última safra: 
+            <input id="input_sacasDesejadas">
+        </div>
+        
+        <button onclick="calcularSoja()">
+            Calcular
+        </button>
+
+        <div id="resultado" class="resultadoCSS"></div>
+    </div>
+</body>
+</html>
+
+<script>
+    function calcularSoja() {
+        // Variáveis
+        var sacasProduzidas = Number(input_sacas.value)
+        var sacasDesejadas = Number(input_sacasDesejadas.value)
+
+        // Cálculo
+        var valorPerda = (sacasDesejadas * 0.20) * 121
+
+
+        resultado.innerHTML = `<br>
+        As ${sacasProduzidas} sacas produzidas, equivalem a ${sacasProduzidas * 60}kg de soja com valor de R$121 por saca.
+        <br><br>
+        Com a nossa solução, você deixará de perder ${(sacasDesejadas * 0.20) * 60} sacas e economizará <div style="font-size: 25px;">R$${valorPerda}.</div>
+        `
+    };
+</script>

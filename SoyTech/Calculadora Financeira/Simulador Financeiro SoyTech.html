@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - Soy Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="calc_container">
+            <h1 class="titulo border-left">Simulador Financeiro!</h1>
+            <div class="line-green pos-left"></div>
+            <div class="inputs_container">
+                <p class="txt_input">Quantos hectares possui na sua fazenda:</p>
+                <input class="input_calc" id="input_expectativa">
+
+                <p class="txt_input">Qual o valor médio da venda de cada unidade de saca:</p>
+                <input class="input_calc" id="input_valorSaca"><br>
+
+                <button class="btn-calc" onclick="calcularSacas()">Calcular</button>
+            </div>
+
+            <div class="resultado_container" id="div_resultado"></div>
+            
+        </div>
+        <div class="info_container">
+            <div class="line-green pos-right"></div>
+            <h2 class="titulo border-right">NOSSA SOLUÇÃO</h2>
+            <p class="info_paragrafo">Segundo a agroSmart, website referência em artigos de agronegócio, pode-se perder até <span style="color: #F6F87C; font-weight: bold; font-size: 36px;">47%</span> da sua produção por falta de controle umidade!
+            Com a solução da SoyTech, você poderá monitorar os dados de umidade das suas plantações.</p>
+
+            <img class="logo" src="./img/logo-soyTech.png" alt="">
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function calcularSacas() {
+        // Variaveis Base
+        var qtdHectare = Number(document.getElementById("input_expectativa").value);
+        var valorSaca = Number(document.getElementById("input_valorSaca").value);
+
+        // Calculos
+        var qtdSoja = qtdHectare * 3800;
+        var qtdSacas = qtdSoja / 60;
+        var valorProducaoSafra = qtdSacas * valorSaca;
+
+        var qtdPerdasSacas = qtdSacas * 0.47
+        var perdaSafraProducao = valorProducaoSafra * 0.47
+
+
+
+        div_resultado.innerHTML = `
+        <p>Sua produção de sacas por safra: <span style="color: #62BD5D; font-weight: bold;">
+            ${qtdSacas.toFixed(2)}</span> Sacas.</p>
+        <p>Valor da safra: <span style="color: #62BD5D; font-weight: bold;">
+            R$${valorProducaoSafra}</span></p>
+        
+        <p>Possível perda por falta de controle umidade: <span style="color: #FC2B2B; font-weight: bold;">
+            ${qtdPerdasSacas.toFixed(2)}</span> Sacas, que equivale a 47% da produção.</p>
+        <p>Valor dessa perda: <span style="color: #FC2B2B; font-weight: bold;">
+            R$${perdaSafraProducao}</span></p> `
+        
+
+        
+    }
+</script>

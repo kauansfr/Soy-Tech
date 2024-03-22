@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Financeiro</title>
+    <link rel="stylesheet" href="Styles.css">
+</head>
+<body>
+    <div class="Calculadora">
+            <h1 class="titulo">Simulador Financeiro SoyTech</h1>
+            <div style="margin-left: 5px;">Bem-vindo ao Simulador Financeiro da SoyTech! Aqui vamos mostrar o motivo pelo qual você e sua fazenda precisam da nossa solução! Faremos uma análise da sua produção para isso.</div><br><br>
+
+            <div class="Container">
+
+                <p class="Texto">Digite a média de quantas sacas de soja você produz por safra: <p class="Texto"></p>
+                <input type="number" id="Input_Sacas" class="input"><br><br>
+
+
+                <p class="Texto">Digite quantos hectares você tem na sua fazenda que são utilizados para plantar soja: <p class="Texto"></p>
+                <input type="number" id="Input_Hectare" class="input"><br><br>
+
+
+                 <p class="Texto">Digite o preço medio de venda de cada saca de soja: <p class="Texto"></p>
+                <input type="number" id="Input_Preco" class="input"><br><br>
+
+            </div>
+
+            <button onclick="Analise()" class="botão">Mostrar Análise</button>
+
+            <div id="Div_Resultado" class="Resultado"></div>
+    </div>
+</body>
+</html>     
+<script>
+    function Analise(){
+    // Captura o número de sacas de soja informadas pelo usuário
+    var sacas = Number(Input_Sacas.value);
+    var Hectares = Number(Input_Hectare.value);
+    var Preco = Number(Input_Preco.value);
+
+    // Definição de variáveis
+    var pesoSacas = 60;
+    var Preco_Por_Sensor = 500;
+    var Tamanho_Hectare_Metros = 10000;
+    var Area_De_Detecção_Sensor_Metros = 5000;
+
+    // Cálculos
+    var Qnt_Sensores_Necessarios_Por_Hectare = Tamanho_Hectare_Metros / Area_De_Detecção_Sensor_Metros;
+    var Total_Sensores = Qnt_Sensores_Necessarios_Por_Hectare * Hectares;
+    var ValorSolucao = 500 * Total_Sensores;
+    var ValorSaca = sacas * Preco;
+    var producaoSemPerda = (sacas * 100) / 80;
+    var valorProducaoSemPerdas = producaoSemPerda * ValorSaca;
+    var PerdaSaca = producaoSemPerda * 0.20;
+    var valorProducaoPerdida = ValorSaca * PerdaSaca;
+    var Perda3Periodo = valorProducaoPerdida * 0.47;
+
+    // Exibição dos resultados
+    Div_Resultado.innerHTML = `
+        A média da quantidade de sacas de soja que você produz por safra atualmente é de <span style = "Color: Green; font-weight: bold;">${sacas} sacas</span>.<br><br>
+
+        Considerando que o peso de cada saca é de ${pesoSacas} kg e o preço médio de cada saca de soja é de ${ValorSaca} reais, o valor de mercado para cada saca de soja é de <span style = "Color: Green; font-weight: bold;">${ValorSaca} reais.</span><br><br>
+
+        O valor total da sua produção atual é de <span style = "Color: Green; font-weight: bold;">${sacas * ValorSaca} reais.</span><br><br>
+
+        Se não houvesse perdas, sua produção seria de <span style = "Color: Green; font-weight: bold;">${producaoSemPerda} sacas</span>, totalizando um valor de <span style = "Color: Green; font-weight: bold;">${valorProducaoSemPerdas} reais.</span><br><br>
+
+        Logo, a perda média por safra devido à falta de monitoramento adequado de umidade é de  <span style = "Color: Red; font-weight: bold;">${valorProducaoPerdida} reais.</span><br><br>
+
+        Vale ressaltar que 47% dessas perdas estão localizadas no Terceiro Período do Plantio de Soja, o que equivale a <span style = "Color: Red; font-weight: bold;">${Perda3Periodo} reais..</span><br><br>
+
+        Mas não precisa se preocupar! É aqui que a SoyTech entra! Sua fazenda tem atualmente ${Hectares} hectares. Com a nossa solução, podemos monitorar cada um deles utilizando <span style = "Color: Green; font-weight: bold;">${Qnt_Sensores_Necessarios_Por_Hectare} sensores.</span><br><br>
+
+        Cada sensor atualmente custa ${Preco_Por_Sensor} reais, o que para o tamanho atual da sua fazenda precisaria de <span style = "Color: Green; font-weight: bold;">${Total_Sensores} sensores</span>, totalizando ${ValorSolucao} reais!
+    `;
+
+    }
+</script>
